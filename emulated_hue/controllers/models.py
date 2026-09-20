@@ -101,5 +101,5 @@ class EntityState(BaseModel):
                 save_state[state] = states[state]
         return EntityState(**save_state)
 
+ALL_STATES: list = list(EntityState.model_fields)
 
-ALL_STATES: list = list(vars(EntityState).get("__fields__"))
