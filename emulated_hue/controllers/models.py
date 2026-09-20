@@ -96,7 +96,7 @@ class EntityState(BaseModel):
             return EntityState()
 
         save_state = {}
-        for state in list(vars(cls).get("__fields__")):
+        for state in list(cls.model_fields):
             if state in save_state:
                 save_state[state] = states[state]
         return EntityState(**save_state)
