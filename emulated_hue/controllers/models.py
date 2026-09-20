@@ -59,7 +59,8 @@ class EntityState(BaseModel):
     def _get_color_mode_attribute(self) -> tuple[str, Any] | None:
         """Return color mode and attribute associated."""
         if self.color_mode == const.HASS_COLOR_MODE_COLOR_TEMP:
-            return const.HASS_ATTR_COLOR_TEMP, self.color_temp
+            kelvin = round(1_000_000 / self.color_temp) if self.color_temp else None
+            return const.HASS_ATTR_COLOR_TEMP_KELVIN, kelvin
         elif self.color_mode == const.HASS_COLOR_MODE_HS:
             return const.HASS_ATTR_HS_COLOR, self.hue_saturation
         elif self.color_mode == const.HASS_COLOR_MODE_XY:
